@@ -16,16 +16,17 @@
             <img class="shadow-1-strong rounded mb-4" src="{{ $product->image }}" />
             
             <div class="form-group">
-                <label @mouseover="onNameOver" @mouseleave="onNameLeave">Name/Title
-                    <button class="btn" :class="BtnEditClass" v-if="hover || editing" @click="toggleEdit">
+                <label>Name/Title
+                    <button class="btn" :class="BtnEditClass" v-if="hover || editing" @click="toggleEdit"
+                        @mouseover="onNameOver" @mouseleave="onNameLeave">
                         <template v-if="!editing">Edit</template>
                         <template v-if="editing">Cancel</template>
                     </button>
                 </label> 
                 <br>
-                <template v-if="!editing">
+                <div class="d-inline-block" v-if="!editing" @mouseover="onNameOver" @mouseleave="onNameLeave">
                     @{{ product.name }}
-                </template>
+                </div>
                 <template v-if="editing">
                     <input type="text" class="form-control" name="name" v-model="product.name" placeholder="Name/Title" @blur="save"/>
                 </template>

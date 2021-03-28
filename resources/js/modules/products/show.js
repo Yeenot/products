@@ -13,7 +13,8 @@ const app = new Vue({
                name: '',
                quantity: '',
                ingredients: ''
-           }
+           },
+           timeOutHandler: null
        }
    },
 
@@ -39,15 +40,26 @@ const app = new Vue({
         },
 
         onNameOver() {
+            if (this.timeOutHandler)
+                clearTimeout(this.timeOutHandler);
             this.hover = true;
         },
 
         onNameLeave() {
-            this.hover = false;
+            let vm = this;
+            if (!vm.editing) {
+                vm.timeOutHandler = setTimeout(function () {
+                    vm.hover = false;
+                    vm.timeOutHandler = null;
+                }, 3000);
+            } else
+                vm.hover = false;
         },
 
         toggleEdit() {
             this.editing = !this.editing;
+            if (!this.editing)
+                this.hover = false;
         },
 
         save() {
