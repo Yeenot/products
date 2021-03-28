@@ -8,7 +8,7 @@
 
 ## Installation
 
-<br/>Copy .env.example to .env
+Copy .env.example to .env
 <br/>Run the folllowing commands: <br/>
 
 - `composer install`
